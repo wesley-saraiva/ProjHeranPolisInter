@@ -15,16 +15,9 @@ import java.util.Objects;
  * @author wesle
  */
 // esta e nossa classe / objeto que representa o aluno
-public class Aluno {
+public class Aluno extends Pessoa {
 
     // Esses são os atributos do Aluno
-    private String nome;
-    private int idade;
-    private String dataNascimento;
-    private String RG;
-    private String CPF;
-    private String nomeMae;
-    private String nomePai;
     private String dataMatricula;
     private String nomeEscola;
     private String serieMatriculado;
@@ -56,61 +49,7 @@ public class Aluno {
     //GET é para resgatar ou obter o valor do atributo
 
     //Recebe dados
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
-    public String getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public String getRG() {
-        return RG;
-    }
-
-    public void setRG(String RG) {
-        this.RG = RG;
-    }
-
-    public String getCPF() {
-        return CPF;
-    }
-
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
-    }
-
-    public String getNomeMae() {
-        return nomeMae;
-    }
-
-    public void setNomeMae(String nomeMae) {
-        this.nomeMae = nomeMae;
-    }
-
-    public String getNomePai() {
-        return nomePai;
-    }
-
-    public void setNomePai(String nomePai) {
-        this.nomePai = nomePai;
-    }
+    
 
     public String getDataMatricula() {
         return dataMatricula;
@@ -138,9 +77,10 @@ public class Aluno {
 
     @Override
     public String toString() {
-        return "Aluno{" + "nome=" + nome + ", idade=" + idade + ", dataNascimento=" + dataNascimento + ", RG=" + RG + ", CPF=" + CPF + ", nomeMae=" + nomeMae + ", nomePai=" + nomePai + ", dataMatricula=" + dataMatricula + ", nomeEscola=" + nomeEscola + ", serieMatriculado=" + '}';
+        return "Aluno{" + "dataMatricula=" + dataMatricula + ", nomeEscola=" + nomeEscola + ", serieMatriculado=" + serieMatriculado + ", disciplinas=" + disciplinas + '}';
     }
 
+    
     @Override
     public int hashCode() {
         int hash = 3;
@@ -168,9 +108,9 @@ public class Aluno {
     //Metodo que retorna a media do aluno;
 
     public double getCalcMedia() {
-        
+
         double somaNotas = 0.0;
-        
+
         for (Disciplina disciplina : disciplinas) {
             somaNotas += disciplina.getNota();
         }
@@ -190,12 +130,33 @@ public class Aluno {
         double media = this.getCalcMedia();
         if (media >= 70) {
             return StatusAluno.APROVADO;
-        } else if(media >=50){
+        } else if (media >= 50) {
             return StatusAluno.RECUPERACAO;
         } else {
-        return StatusAluno.REPROVADO;
+            return StatusAluno.REPROVADO;
         }
-    
+
     }
+    //identifica método sobreescrito
+    @Override
+    public boolean pessoaMaiorIdade() {
+        
+        return idade >=21;
+    }
+    public String msgMaiorIdade(){
+        
+        return this.pessoaMaiorIdade() ? "Obaa aluno maior de idade" : "Vixi aluno menor de idade";
+    }
+
+    @Override
+    public double salario() {
+        return 0;
+    }
+    public String msgSalario(){
+    
+        return "Aluno não pode receber salario";
+                
+    }
+    
 
 }
